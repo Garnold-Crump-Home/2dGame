@@ -18,18 +18,18 @@ public class PlayerMovement : MonoBehaviour
     private Rigidbody2D rb;
     private bool isGrounded;
     private float moveInput;
-
-
+    private Camera cam;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
+        cam = Camera.main;
     }
 
     void Update()
     {
         // Get horizontal input (-1 to 1)
-        moveInput = Input.GetAxisRaw("Horizontal");
+        moveInput = Input.GetAxisRaw("Horizontal1");
 
         // Jump
         if (Input.GetButtonDown("Jump") && isGrounded)
@@ -37,10 +37,24 @@ public class PlayerMovement : MonoBehaviour
             rb.velocity = new Vector2(rb.velocity.x, jumpForce);
         }
 
-        // Flip sprite based on movement direction
-        if (moveInput != 0)
+        // Flip player towards mouse position
+        Vector3 mouseWorldPos = cam.ScreenToWorldPoint(Input.mousePosition);
+
+        if (mouseWorldPos.x > transform.position.x)
         {
-            transform.localScale = new Vector3(Mathf.Sign(moveInput), 1, 1);
+            transform.localScale = new Vector3(
+                Mathf.Abs(transform.localScale.x),
+                transform.localScale.y,
+                transform.localScale.z
+            ); // face right
+        }
+        else if (mouseWorldPos.x < transform.position.x)
+        {
+            transform.localScale = new Vector3(
+                -Mathf.Abs(transform.localScale.x),
+                transform.localScale.y,
+                transform.localScale.z
+            ); // face left
         }
     }
 
@@ -62,4 +76,3 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 }
-
