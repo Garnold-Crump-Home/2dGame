@@ -18,6 +18,7 @@ public class AimAtJoystick : MonoBehaviour
         // Get joystick input
         float x = Input.GetAxis(horizontalAxis);
         float y = Input.GetAxis(verticalAxis);
+      
 
         // Invert axes if needed
         if (invertX) x *= -1f;
@@ -34,7 +35,7 @@ public class AimAtJoystick : MonoBehaviour
             float angle = Mathf.Atan2(stickDirection.y, stickDirection.x) * Mathf.Rad2Deg;
 
             // Apply rotation on Z only, keep X and Y fixed
-            transform.rotation = Quaternion.Euler(90f, 0f, angle);
+            transform.rotation = Quaternion.Euler(0f, 0f, angle);
         }
     }
 }

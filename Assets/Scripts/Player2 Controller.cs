@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player2Controller : MonoBehaviour
 {
     public int playerHealth = 100;
+    public int playerMaxHealth = 100;
+    public int player2Damage = 25;
+    public int bulletSize2 = 1;
+    public Slider slider;
 
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
@@ -32,6 +37,9 @@ public class Player2Controller : MonoBehaviour
 
     void Update()
     {
+        slider.minValue = 0;
+        slider.maxValue = playerMaxHealth;
+        slider.value = playerHealth;
         // Get movement input
         moveInput = Input.GetAxisRaw("Horizontal_P2");
 

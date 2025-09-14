@@ -1,10 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
     public int playerHealth = 100;
+    public int playerMaxHealth = 100;
+    public int player1DamageAmount = 25;
+    public int bulletSize = 1;
+    public Slider slider;
 
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
@@ -28,7 +33,9 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        // Get horizontal input (-1 to 1)
+        slider.minValue = 0;
+        slider.maxValue = playerMaxHealth;
+        slider.value = playerHealth;
         moveInput = Input.GetAxisRaw("Horizontal1");
 
         // Jump
