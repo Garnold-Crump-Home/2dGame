@@ -7,6 +7,9 @@ public class projectileDespawn : MonoBehaviour
 {
    
     public int bounces = 0;
+
+    public PhysicsMaterial2D material;
+    public int bounciness = 3;
    
     
     // Start is called before the first frame update
@@ -23,8 +26,16 @@ public class projectileDespawn : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-
-        Debug.Log("works");
-        Destroy(this.gameObject);
+        if (bounces == 0)
+        {
+            Debug.Log("works");
+            Destroy(this.gameObject);
+            material.bounciness = 0;
+        }
+        if(bounces >= 1)
+        {
+            material.bounciness = bounciness;
+            bounces -= 1 ;
+        }
     }
 }
