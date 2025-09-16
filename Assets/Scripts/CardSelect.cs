@@ -16,6 +16,8 @@ public class CardSelect : MonoBehaviour
     public int randomNumber;
     public int randomNumber2;
     public bool clicked;
+    public bool clicked2;
+    public bool clicked3;
     
     void Start()
     {
@@ -32,34 +34,41 @@ public class CardSelect : MonoBehaviour
     }
     public void OnClick()
     {
+        clicked = true;
         if (button1)
         {
             
             Debug.Log(randomNumber);
-           
+            SceneManager.LoadScene(1);
         }
-        SceneManager.LoadScene(0);
-       clicked = true;
+       
+       
+      
     }
     public void OnClick2()
     {
+        clicked2 = true;
         if (button2)
         {
            
             Debug.Log(randomNumber1);
-          
+            SceneManager.LoadScene(1);
+
         }
-        SceneManager.LoadScene(0);
-        clicked = true;
+       
+        
+       
     }
     public void OnClick3()
     {
+        clicked3 = true;
         if (button3)
         {
            
-            Debug.Log(randomNumber2);
+            Debug.Log(randomNumber2); SceneManager.LoadScene(1);
         }
-        SceneManager.LoadScene(0);
-        clicked = true;
+       
+       
+        
     }
 }

@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float playerHealth = 100;
-    public float playerMaxHealth = 100;
+    public int playerHealth = 100;
+    public int playerMaxHealth = 100;
     public int player1DamageAmount = 25;
     public int bulletSize = 1;
     public Slider slider;
