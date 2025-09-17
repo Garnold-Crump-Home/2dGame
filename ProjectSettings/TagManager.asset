@@ -7,6 +7,8 @@ TagManager:
   - Ground
   - Player2
   - Player1
+  - Projectile
+  - Projectile2
   layers:
   - Default
   - TransparentFX

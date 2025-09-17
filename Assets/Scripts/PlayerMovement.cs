@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     public int player1DamageAmount = 25;
     public int bulletSize = 1;
     public Slider slider;
+    public Transform projectile1;
+    public bool IncreaseSize;
+    
 
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
@@ -33,6 +36,11 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
+        if (IncreaseSize) {
+
+            projectile1.localScale += new Vector3(1, 1, 1); 
+            IncreaseSize = false;
+        }
         slider.minValue = 0;
         slider.maxValue = playerMaxHealth;
         slider.value = playerHealth;

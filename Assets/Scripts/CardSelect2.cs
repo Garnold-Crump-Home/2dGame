@@ -6,24 +6,21 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class CardSelect : MonoBehaviour
+public class CardSelect2 : MonoBehaviour
 {
    
 
-  
-    public int randomNumber;
-    public bool clicked;
-    public bool clicked2;
+    public int randomNumber2;
     public bool clicked3;
     public bool p2;
     public Firing firing;
     public FiringController controller;
-    
-    
+
+
     void Start()
     {
-        randomNumber = Random.Range(0, 20);
-      
+    
+        randomNumber2 = Random.Range(0, 20);
 
     }
 
@@ -38,8 +35,8 @@ public class CardSelect : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Projectile"))
         {
-            clicked = true;
-            Debug.Log(randomNumber);
+            clicked3 = true;
+            Debug.Log(randomNumber2);
             SceneManager.LoadScene(1);
             firing.enabled = true;
             controller.enabled = true;
@@ -48,7 +45,8 @@ public class CardSelect : MonoBehaviour
 else if (collision.gameObject.CompareTag("Projectile2"))
             {
                 
-                Debug.Log(randomNumber);
+                Debug.Log(randomNumber2);
+            
             p2 = true;
             SceneManager.LoadScene(1);
             firing.enabled = true;
