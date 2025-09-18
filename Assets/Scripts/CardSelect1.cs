@@ -22,7 +22,7 @@ public class CardSelect1 : MonoBehaviour
     void Start()
     {
        
-        randomNumber1 = Random.Range(0, 20);
+       
         
 
     }
@@ -30,7 +30,11 @@ public class CardSelect1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name != "Cards")
+        {
+            randomNumber1 = Random.Range(0, 20);
+        }
     }
 
 

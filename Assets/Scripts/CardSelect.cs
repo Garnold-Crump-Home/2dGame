@@ -22,15 +22,19 @@ public class CardSelect : MonoBehaviour
     
     void Start()
     {
+
         randomNumber = Random.Range(0, 20);
-      
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name != "Cards")
+        {
+            randomNumber = Random.Range(0, 20);
+        }
     }
 
 

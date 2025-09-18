@@ -12,6 +12,7 @@ public class PlayerMovement : MonoBehaviour
     public Slider slider;
     public Transform projectile1;
     public bool IncreaseSize;
+    public Firing firing;
     
 
     [Header("Movement Settings")]
@@ -38,7 +39,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (IncreaseSize) {
 
-            projectile1.localScale += new Vector3(1, 1, 1); 
+            projectile1.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+            int i = firing.projectileSpeed * 2/10;
+            firing.projectileSpeed -= i;
+
+            
+            
             IncreaseSize = false;
         }
         slider.minValue = 0;

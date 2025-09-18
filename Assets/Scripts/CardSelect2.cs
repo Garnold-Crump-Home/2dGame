@@ -8,8 +8,8 @@ using UnityEngine.UI;
 
 public class CardSelect2 : MonoBehaviour
 {
-   
 
+    public bool random;
     public int randomNumber2;
     public bool clicked3;
     public bool p2;
@@ -20,14 +20,20 @@ public class CardSelect2 : MonoBehaviour
     void Start()
     {
     
-        randomNumber2 = Random.Range(0, 20);
+        
 
     }
 
     // Update is called once per frame
     void Update()
     {
-
+        Scene currentScene = SceneManager.GetActiveScene();
+        if (currentScene.name != "Cards")
+        {
+            randomNumber2 = Random.Range(0, 20);
+            
+        }
+        
     }
 
 

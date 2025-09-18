@@ -1,5 +1,6 @@
 
 using Unity.VisualScripting;
+using Unity.VisualScripting.ReorderableList;
 using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -49,12 +50,7 @@ public class Cards : MonoBehaviour
             b1.image.sprite = Card1;
         }
 
-            if (card1 == 2 || card2 == 2 || card3 == 2)
-        {
-            b1.image.sprite = Card2;
-             b2.image.sprite = Card2;
-            b3.image.sprite = Card2;
-        }
+        
             //start of huge card
         if (card1 == 1)
         {
@@ -267,6 +263,47 @@ public class Cards : MonoBehaviour
             }
         }
         //end of huge card
+        if(card1 == 2)
+        {
+            b1.image.sprite = Card2;
+            if (CardSelect.clicked)
+            {
+                PlayerMovement.IncreaseSize = true;
+                CardSelect.clicked = false;
+            }
+           else if (CardSelect.p2)
+            {
+                Player2Controller.IncreaseSize = true;
+                CardSelect2.p2 = false;
+
+            }
+        }
+        if (card2 == 2) {
+        b2.image.sprite = Card2;
+            if (CardSelect1.clicked2)
+            {
+                PlayerMovement.IncreaseSize = true;
+                CardSelect1.clicked2 = false;
+            }
+            else if (CardSelect2.p2) {
+                Player2Controller.IncreaseSize = true;
+                CardSelect2.p2 = false;
+            }
+        
+        }
+        if (card3 == 3)
+        {
+            b3.image.sprite = Card2;
+            if (CardSelect2.clicked3)
+            {
+                PlayerMovement.IncreaseSize = true;
+                CardSelect2.clicked3 = false;
+            }
+            else if (CardSelect2.p2) {
+                Player2Controller.IncreaseSize = true;
+                CardSelect2.p2 = false;
+            }
+        }
     }
     
 }

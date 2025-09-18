@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,9 @@ public class Player2Controller : MonoBehaviour
     public int player2Damage = 25;
     public int bulletSize2 = 1;
     public Slider slider;
+    public bool IncreaseSize;
+    public Transform projectile2;
+    public FiringController firingController;
 
     [Header("Movement Settings")]
     public float moveSpeed = 5f;
@@ -37,6 +41,17 @@ public class Player2Controller : MonoBehaviour
 
     void Update()
     {
+        if (IncreaseSize)
+        {
+
+            projectile2.localScale += new Vector3(0.2f, 0.2f, 0.2f);
+            int i = firingController.projectileSpeed * 2 / 10;
+            firingController.projectileSpeed -= i;
+
+
+
+            IncreaseSize = false;
+        }
         slider.minValue = 0;
         slider.maxValue = playerMaxHealth;
         slider.value = playerHealth;
