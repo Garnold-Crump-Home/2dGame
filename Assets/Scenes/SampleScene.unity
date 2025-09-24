@@ -1843,6 +1843,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1241205287}
     - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
+      propertyPath: Speed_Card
+      value: 
+      objectReference: {fileID: 21300000, guid: ed24de2bca07b1a4a9013c2816d12d32, type: 3}
+    - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
       propertyPath: colliders2
       value: 
       objectReference: {fileID: 493726152}
