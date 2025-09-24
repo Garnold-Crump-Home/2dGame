@@ -1831,9 +1831,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1348583410}
     - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
+      propertyPath: BlankCard
+      value: 
+      objectReference: {fileID: 21300000, guid: e82211c6f0f20f2499558794838e317f, type: 3}
+    - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
       propertyPath: colliders
       value: 
-      objectReference: {fileID: 1241205284}
+      objectReference: {fileID: 1241205286}
     - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
       propertyPath: CardSelect
       value: 
@@ -1841,11 +1845,11 @@ PrefabInstance:
     - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
       propertyPath: colliders2
       value: 
-      objectReference: {fileID: 493726150}
+      objectReference: {fileID: 493726152}
     - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
       propertyPath: colliders3
       value: 
-      objectReference: {fileID: 484556047}
+      objectReference: {fileID: 484556049}
     - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
       propertyPath: CardSelect1
       value: 

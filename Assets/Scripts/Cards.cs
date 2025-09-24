@@ -15,14 +15,16 @@ public class Cards : MonoBehaviour
     public Button b3;
     public Sprite Card1;
     public Sprite Card2;
+    public Sprite Speed_Card;
+    public Sprite BlankCard;
     public PlayerMovement PlayerMovement;
     public Player2Controller Player2Controller;
     public Canvas canvas;
     public Transform player1;
     public Transform player2;
-    public GameObject colliders;
-    public GameObject colliders2;
-    public GameObject colliders3;
+    public Collider2D colliders;
+    public Collider2D colliders2;
+    public Collider2D colliders3;
     public CardSelect1 CardSelect1;
     public CardSelect2 CardSelect2;
     public int card1;
@@ -36,274 +38,351 @@ public class Cards : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-       
-        int card1 = CardSelect.randomNumber;
-        int card2 = CardSelect1.randomNumber1;
-        int card3 = CardSelect2.randomNumber2;
+
+
         Scene currentScene = SceneManager.GetActiveScene();
         string sceneName = currentScene.name;
-        if (sceneName == "Cards") { canvas.enabled = true; b1.enabled = true; b2.enabled = true; b3.enabled = true; colliders.SetActive(true); colliders2.SetActive(true); colliders3.SetActive(true); }
-        if (sceneName != "Cards") { canvas.enabled = false; b1.enabled = false; b2.enabled = false; b3.enabled = false; colliders.SetActive(false); colliders2.SetActive(false); colliders3.SetActive(false); }
-
-        if (card1 == 1)
+        if (sceneName == "Cards")
         {
-            b1.image.sprite = Card1;
+            canvas.enabled = true; b1.enabled = true; b2.enabled = true; b3.enabled = true; colliders.enabled = true; colliders2.enabled = true; colliders3.enabled = true;
+        }
+        if (sceneName != "Cards")
+        {
+            canvas.enabled = false; b1.enabled = false; b2.enabled = false; b3.enabled = false; colliders.enabled = false; colliders2.enabled = false; colliders3.enabled = false;
         }
 
-        
+        if (sceneName == "Cards")
+        {
+            int card1 = CardSelect.randomNumber;
+            int card2 = CardSelect1.randomNumber1;
+            int card3 = CardSelect2.randomNumber2;
+            if (card1 != 1 || card1 != 2 || card1 != 3)
+            {
+                b1.image.sprite = BlankCard;
+            }
+            if (card2 != 1 || card2 != 2 || card2 != 3)
+            {
+                b2.image.sprite = BlankCard;
+            }
+            if (card3 != 1 || card3 != 2 || card3 != 3)
+            {
+                b3.image.sprite = BlankCard;
+            }
+
+
+
             //start of huge card
-        if (card1 == 1)
-        {
-            b1.image.sprite = Card1;
-
-            if (CardSelect.clicked)
+            if (card1 == 1)
             {
-                int health = PlayerMovement.playerMaxHealth * 4;
-                int h = health / 10;
-                h += PlayerMovement.playerMaxHealth;
-                PlayerMovement.playerMaxHealth = h;
-                PlayerMovement.playerHealth = PlayerMovement.playerMaxHealth;
-                float speed = PlayerMovement.moveSpeed * 25;
-                float speed1 = speed / 100;
-                PlayerMovement.moveSpeed -= speed1;
-                float x = player1.localScale.x;
 
-                if (x < 0)
+                b1.image.sprite = Card1;
+
+                if (CardSelect.clicked && card1 == 1)
                 {
-                    player1.localScale += new Vector3(-1, 1, 1);
+                    int health = PlayerMovement.playerMaxHealth * 4;
+                    int h = health / 10;
+                    h += PlayerMovement.playerMaxHealth;
+                    PlayerMovement.playerMaxHealth = h;
+                    PlayerMovement.playerHealth = PlayerMovement.playerMaxHealth;
+                    float speed = PlayerMovement.moveSpeed * 25;
+                    float speed1 = speed / 100;
+                    PlayerMovement.moveSpeed -= speed1;
+                    float x = player1.localScale.x;
+
+                    if (x < 0)
+                    {
+                        player1.localScale += new Vector3(-1, 1, 1);
+                        CardSelect.clicked = false;
+                    }
+                    else if (x > 0)
+                    {
+                        player1.localScale += new Vector3(1, 1, 1);
+                        CardSelect.clicked = false;
+                    }
+
+                    float i = player1.localScale.y;
+                    float j = i * 16 / 100;
+                    float groudIncrease = j;
+
+                    PlayerMovement.groundCheckRadius = groudIncrease;
                     CardSelect.clicked = false;
+
+
+
+
                 }
-                else if (x > 0)
+                else if (CardSelect.p2)
                 {
-                    player1.localScale += new Vector3(1, 1, 1);
-                    CardSelect.clicked = false;
-                }
+                    int health = Player2Controller.playerMaxHealth * 4;
+                    int h = health / 10;
+                    h += Player2Controller.playerMaxHealth;
+                    Player2Controller.playerMaxHealth = h;
+                    Player2Controller.playerHealth = Player2Controller.playerMaxHealth;
+                    float speed = Player2Controller.moveSpeed * 25;
+                    float speed1 = speed / 100;
+                    Player2Controller.moveSpeed -= speed1;
+                    float x = player2.localScale.x;
 
-                float i = player1.localScale.y;
-                float j = i * 16 / 100;
-                float groudIncrease = j;
+                    if (x < 0)
+                    {
+                        player2.localScale += new Vector3(-1, 1, 1);
+                        CardSelect.p2 = false;
+                    }
+                    else if (x > 0)
+                    {
+                        player2.localScale += new Vector3(1, 1, 1);
+                        CardSelect.p2 = false;
+                    }
 
-                PlayerMovement.groundCheckRadius = groudIncrease;
-                CardSelect.clicked = false;
+                    float i = player2.localScale.y;
+                    float j = i * 16 / 100;
+                    float groudIncrease = j;
 
-
-
-
-            }
-            else if (CardSelect.p2)
-            {
-                int health = Player2Controller.playerMaxHealth * 4;
-                int h = health / 10;
-                h += Player2Controller.playerMaxHealth;
-                Player2Controller.playerMaxHealth = h;
-                Player2Controller.playerHealth = Player2Controller.playerMaxHealth;
-                float speed = Player2Controller.moveSpeed * 25;
-                float speed1 = speed / 100;
-                Player2Controller.moveSpeed -= speed1;
-                float x = player2.localScale.x;
-
-                if (x < 0)
-                {
-                    player2.localScale += new Vector3(-1, 1, 1);
+                    Player2Controller.groundCheckRadius = groudIncrease;
                     CardSelect.p2 = false;
                 }
-                else if (x > 0)
-                {
-                    player2.localScale += new Vector3(1, 1, 1);
-                    CardSelect.p2 = false;
-                }
-
-                float i = player2.localScale.y;
-                float j = i * 16 / 100;
-                float groudIncrease = j;
-
-                Player2Controller.groundCheckRadius = groudIncrease;
-                CardSelect.p2 = false;
             }
-        }
 
-        else if (CardSelect1.randomNumber1 == 1)
-        {
-
-            b2.image.sprite = Card1;
-
-            if (CardSelect1.clicked2)
+            else if (card2 == 1)
             {
-                int health = PlayerMovement.playerMaxHealth * 4;
-                int h = health / 10;
-                h += PlayerMovement.playerMaxHealth;
-                PlayerMovement.playerMaxHealth = h;
-                PlayerMovement.playerHealth = PlayerMovement.playerMaxHealth;
-                float speed = PlayerMovement.moveSpeed * 25;
-                float speed1 = speed / 100;
-                PlayerMovement.moveSpeed -= speed1;
 
+                b2.image.sprite = Card1;
 
-                float x = player1.localScale.x;
-
-                if (x < 0)
+                if (CardSelect1.clicked2)
                 {
-                    player1.localScale += new Vector3(-1, 1, 1);
+                    int health = PlayerMovement.playerMaxHealth * 4;
+                    int h = health / 10;
+                    h += PlayerMovement.playerMaxHealth;
+                    PlayerMovement.playerMaxHealth = h;
+                    PlayerMovement.playerHealth = PlayerMovement.playerMaxHealth;
+                    float speed = PlayerMovement.moveSpeed * 25;
+                    float speed1 = speed / 100;
+                    PlayerMovement.moveSpeed -= speed1;
+
+
+                    float x = player1.localScale.x;
+
+                    if (x < 0)
+                    {
+                        player1.localScale += new Vector3(-1, 1, 1);
+                        CardSelect1.clicked2 = false;
+                    }
+                    else if (x > 0)
+                    {
+                        player1.localScale += new Vector3(1, 1, 1);
+                        CardSelect1.clicked2 = false;
+                    }
+
+                    float i = player1.localScale.y;
+                    float j = i * 16 / 100;
+                    float groudIncrease = j;
+
+                    PlayerMovement.groundCheckRadius = groudIncrease;
+                    CardSelect1.clicked2 = false;
+
+
+
+
+                }
+                else if (CardSelect1.p2)
+                {
+                    int health = Player2Controller.playerMaxHealth * 4;
+                    int h = health / 10;
+                    h += Player2Controller.playerMaxHealth;
+                    Player2Controller.playerMaxHealth = h;
+                    Player2Controller.playerHealth = Player2Controller.playerMaxHealth;
+                    float speed = Player2Controller.moveSpeed * 25;
+                    float speed1 = speed / 100;
+                    Player2Controller.moveSpeed -= speed1;
+                    float x = player2.localScale.x;
+
+                    if (x < 0)
+                    {
+                        player2.localScale += new Vector3(-1, 1, 1);
+                        CardSelect1.p2 = false;
+                    }
+                    else if (x > 0)
+                    {
+                        player2.localScale += new Vector3(1, 1, 1);
+                        CardSelect1.p2 = false;
+                    }
+
+                    float i = player2.localScale.y;
+                    float j = i * 16 / 100;
+                    float groudIncrease = j;
+
+                    Player2Controller.groundCheckRadius = groudIncrease;
                     CardSelect1.clicked2 = false;
                 }
-                else if (x > 0)
+            }
+            else if (card3 == 1)
+            {
+
+                b3.image.sprite = Card1;
+                if (CardSelect2.clicked3)
                 {
-                    player1.localScale += new Vector3(1, 1, 1);
+                    int health = PlayerMovement.playerMaxHealth * 4;
+                    int h = health / 10;
+                    h += PlayerMovement.playerMaxHealth;
+                    PlayerMovement.playerMaxHealth = h;
+                    PlayerMovement.playerHealth = PlayerMovement.playerMaxHealth;
+                    float speed = PlayerMovement.moveSpeed * 25;
+                    float speed1 = speed / 100;
+                    PlayerMovement.moveSpeed -= speed1;
+
+                    float x = player1.localScale.x;
+
+                    if (x < 0)
+                    {
+                        player1.localScale += new Vector3(-1, 1, 1);
+                        CardSelect2.clicked3 = false;
+                    }
+                    else if (x > 0)
+                    {
+                        player1.localScale += new Vector3(1, 1, 1);
+                        CardSelect2.clicked3 = false;
+                    }
+
+                    float i = player1.localScale.y;
+                    float j = i * 16 / 100;
+                    float groudIncrease = j;
+                    PlayerMovement.groundCheckRadius = groudIncrease;
+                    CardSelect2.clicked3 = false;
+
+
+
+                }
+                else if (CardSelect2.p2)
+                {
+                    int health = Player2Controller.playerMaxHealth * 4;
+                    int h = health / 10;
+                    h += Player2Controller.playerMaxHealth;
+                    Player2Controller.playerMaxHealth = h;
+                    Player2Controller.playerHealth = Player2Controller.playerMaxHealth;
+                    float speed = Player2Controller.moveSpeed * 25;
+                    float speed1 = speed / 100;
+                    Player2Controller.moveSpeed -= speed1;
+                    float x = player2.localScale.x;
+
+                    if (x < 0)
+                    {
+                        player2.localScale += new Vector3(-1, 1, 1);
+                        CardSelect2.p2 = false;
+                    }
+                    else if (x > 0)
+                    {
+                        player2.localScale += new Vector3(1, 1, 1);
+                        CardSelect2.p2 = false;
+                    }
+
+                    float i = player2.localScale.y;
+                    float j = i * 16 / 100;
+                    float groudIncrease = j;
+
+                    Player2Controller.groundCheckRadius = groudIncrease;
+                    CardSelect2.p2 = false;
+                }
+            }
+            //end of huge card
+            //start of projectile size
+            if (card1 == 2)
+            {
+                b1.image.sprite = Card2;
+                if (CardSelect.clicked)
+                {
+                    PlayerMovement.IncreaseSize = true;
+                    CardSelect.clicked = false;
+                }
+                else if (CardSelect.p2)
+                {
+                    Player2Controller.IncreaseSize = true;
+                    CardSelect2.p2 = false;
+
+                }
+            }
+            if (card2 == 2)
+            {
+                b2.image.sprite = Card2;
+                if (CardSelect1.clicked2)
+                {
+                    PlayerMovement.IncreaseSize = true;
                     CardSelect1.clicked2 = false;
                 }
-
-                float i = player1.localScale.y;
-                float j = i * 16 / 100;
-                float groudIncrease = j;
-
-                PlayerMovement.groundCheckRadius = groudIncrease;
-                CardSelect1.clicked2 = false;
-
-
-
-
-            }
-            else if (CardSelect1.p2)
-            {
-                int health = Player2Controller.playerMaxHealth * 4;
-                int h = health / 10;
-                h += Player2Controller.playerMaxHealth;
-                Player2Controller.playerMaxHealth = h;
-                Player2Controller.playerHealth = Player2Controller.playerMaxHealth;
-                float speed = Player2Controller.moveSpeed * 25;
-                float speed1 = speed / 100;
-                Player2Controller.moveSpeed -= speed1;
-                float x = player2.localScale.x;
-
-                if (x < 0)
+                else if (CardSelect2.p2)
                 {
-                    player2.localScale += new Vector3(-1, 1, 1);
-                    CardSelect1.p2 = false;
-                }
-                else if (x > 0)
-                {
-                    player2.localScale += new Vector3(1, 1, 1);
-                    CardSelect1.p2 = false;
-                }
-
-                float i = player2.localScale.y;
-                float j = i * 16 / 100;
-                float groudIncrease = j;
-
-                Player2Controller.groundCheckRadius = groudIncrease;
-                CardSelect1.clicked2 = false;
-            }
-        }
-        else if (CardSelect2.randomNumber2 == 1)
-        {
-
-            b3.image.sprite = Card1;
-            if (CardSelect2.clicked3)
-            {
-                int health = PlayerMovement.playerMaxHealth * 4;
-                int h = health / 10;
-                h += PlayerMovement.playerMaxHealth;
-                PlayerMovement.playerMaxHealth = h;
-                PlayerMovement.playerHealth = PlayerMovement.playerMaxHealth;
-                float speed = PlayerMovement.moveSpeed * 25;
-                float speed1 = speed / 100;
-                PlayerMovement.moveSpeed -= speed1;
-
-                float x = player1.localScale.x;
-
-                if (x < 0)
-                {
-                    player1.localScale += new Vector3(-1, 1, 1);
-                    CardSelect2.clicked3 = false;
-                }
-                else if (x > 0)
-                {
-                    player1.localScale += new Vector3(1, 1, 1);
-                    CardSelect2.clicked3 = false;
-                }
-
-                float i = player1.localScale.y;
-                float j = i * 16 / 100;
-                float groudIncrease = j;
-                PlayerMovement.groundCheckRadius = groudIncrease;
-                CardSelect2.clicked3 = false;
-
-
-
-            }
-            else if (CardSelect2.p2)
-            {
-                int health = Player2Controller.playerMaxHealth * 4;
-                int h = health / 10;
-                h += Player2Controller.playerMaxHealth;
-                Player2Controller.playerMaxHealth = h;
-                Player2Controller.playerHealth = Player2Controller.playerMaxHealth;
-                float speed = Player2Controller.moveSpeed * 25;
-                float speed1 = speed / 100;
-                Player2Controller.moveSpeed -= speed1;
-                float x = player2.localScale.x;
-
-                if (x < 0)
-                {
-                    player2.localScale += new Vector3(-1, 1, 1);
-                    CardSelect2.p2 = false;
-                }
-                else if (x > 0)
-                {
-                    player2.localScale += new Vector3(1, 1, 1);
+                    Player2Controller.IncreaseSize = true;
                     CardSelect2.p2 = false;
                 }
 
-                float i = player2.localScale.y;
-                float j = i * 16 / 100;
-                float groudIncrease = j;
+            }
+            if (card3 == 3)
+            {
+                b3.image.sprite = Card2;
+                if (CardSelect2.clicked3)
+                {
+                    PlayerMovement.IncreaseSize = true;
+                    CardSelect2.clicked3 = false;
+                }
+                else if (CardSelect2.p2)
+                {
+                    Player2Controller.IncreaseSize = true;
+                    CardSelect2.p2 = false;
+                }
+            }
+            //end of projectile size
+            if (card1 == 4)
+            {
+                b1.image.sprite = Speed_Card;
+                if (CardSelect.clicked)
+                {
+                    float x = PlayerMovement.moveSpeed * 0.3f;
+                    PlayerMovement.moveSpeed += x;
+                    float a = player1.localScale.x;
 
-                Player2Controller.groundCheckRadius = groudIncrease;
-                CardSelect2.p2 = false;
-            }
-        }
-        //end of huge card
-        if(card1 == 2)
-        {
-            b1.image.sprite = Card2;
-            if (CardSelect.clicked)
-            {
-                PlayerMovement.IncreaseSize = true;
-                CardSelect.clicked = false;
-            }
-           else if (CardSelect.p2)
-            {
-                Player2Controller.IncreaseSize = true;
-                CardSelect2.p2 = false;
+                    if (a < 0)
+                    {
+                        player1.localScale -= new Vector3(-1, 1, 1);
+                        CardSelect.clicked = false;
+                    }
+                    else if (a > 0)
+                    {
+                        player1.localScale -= new Vector3(1, 1, 1);
+                        CardSelect.clicked = false;
+                    }
 
-            }
-        }
-        if (card2 == 2) {
-        b2.image.sprite = Card2;
-            if (CardSelect1.clicked2)
-            {
-                PlayerMovement.IncreaseSize = true;
-                CardSelect1.clicked2 = false;
-            }
-            else if (CardSelect2.p2) {
-                Player2Controller.IncreaseSize = true;
-                CardSelect2.p2 = false;
-            }
-        
-        }
-        if (card3 == 3)
-        {
-            b3.image.sprite = Card2;
-            if (CardSelect2.clicked3)
-            {
-                PlayerMovement.IncreaseSize = true;
-                CardSelect2.clicked3 = false;
-            }
-            else if (CardSelect2.p2) {
-                Player2Controller.IncreaseSize = true;
-                CardSelect2.p2 = false;
+                    float i = player1.localScale.y;
+                    float j = i * 16 / 100;
+                    float groudIncrease = j;
+                    PlayerMovement.groundCheckRadius = groudIncrease;
+                    CardSelect.clicked = false;
+                }
+
+                else if (CardSelect.p2)
+                {
+                    float y = Player2Controller.moveSpeed * 0.3f;
+                    Player2Controller.moveSpeed += y;
+                    float c = player1.localScale.x;
+
+                    if (c < 0)
+                    {
+                        player2.localScale -= new Vector3(-1, 1, 1);
+                        CardSelect.p2 = false;
+                    }
+                    else if (c > 0)
+                    {
+                        player2.localScale -= new Vector3(1, 1, 1);
+                        CardSelect.p2 = false;
+                    }
+
+                    float b = player2.localScale.y;
+                    float v = b * 16 / 100;
+                    float groudIncrease1 = v;
+                    Player2Controller.groundCheckRadius = groudIncrease1;
+                    CardSelect.clicked = false;
+                }
+                }
             }
         }
     }
-    
-}
+
+

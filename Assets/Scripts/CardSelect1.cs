@@ -31,9 +31,10 @@ public class CardSelect1 : MonoBehaviour
     void Update()
     {
         Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name != "Cards")
+        if (currentScene.name == "SampleScene")
         {
             randomNumber1 = Random.Range(0, 20);
+            Debug.Log("Random number");
         }
     }
 
