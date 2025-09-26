@@ -9,6 +9,8 @@ using UnityEngine.UI;
 
 public class Cards : MonoBehaviour
 {
+    public playerDamage playerDamage;
+    public Player2Damage player2Damage;
     public CardSelect CardSelect;
     public Button b1;
     public Button b2;
@@ -16,6 +18,8 @@ public class Cards : MonoBehaviour
     public Sprite Card1;
     public Sprite Card2;
     public Sprite Speed_Card;
+    public Sprite Glass_Cannon_Card;
+    public Sprite Homing_Card;
     public Sprite BlankCard;
     public PlayerMovement PlayerMovement;
     public Player2Controller Player2Controller;
@@ -28,8 +32,9 @@ public class Cards : MonoBehaviour
     public CardSelect1 CardSelect1;
     public CardSelect2 CardSelect2;
     public int card1;
-    public int card2; 
+    public int card2;
     public int card3;
+
     void Start()
     {
 
@@ -315,7 +320,7 @@ public class Cards : MonoBehaviour
                 }
 
             }
-            if (card3 == 3)
+            if (card3 == 2)
             {
                 b3.image.sprite = Card2;
                 if (CardSelect2.clicked3)
@@ -330,7 +335,8 @@ public class Cards : MonoBehaviour
                 }
             }
             //end of projectile size
-            if (card1 == 4)
+            //start of speed card
+            if (card1 == 3)
             {
                 b1.image.sprite = Speed_Card;
                 if (CardSelect.clicked)
@@ -378,11 +384,252 @@ public class Cards : MonoBehaviour
                     float v = b * 16 / 100;
                     float groudIncrease1 = v;
                     Player2Controller.groundCheckRadius = groudIncrease1;
-                    CardSelect.clicked = false;
-                }
+                    CardSelect.p2 = false;
                 }
             }
+            if (card2 == 3)
+            {
+                b2.image.sprite = Speed_Card;
+                if (CardSelect1.clicked2)
+                {
+                    float x = PlayerMovement.moveSpeed * 0.3f;
+                    PlayerMovement.moveSpeed += x;
+                    float a = player1.localScale.x;
+
+                    if (a < 0)
+                    {
+                        player1.localScale -= new Vector3(-1, 1, 1);
+                        CardSelect1.clicked2 = false;
+                    }
+                    else if (a > 0)
+                    {
+                        player1.localScale -= new Vector3(1, 1, 1);
+                        CardSelect1.clicked2 = false;
+                    }
+
+                    float i = player1.localScale.y;
+                    float j = i * 16 / 100;
+                    float groudIncrease = j;
+                    PlayerMovement.groundCheckRadius = groudIncrease;
+                    CardSelect1.clicked2 = false;
+                }
+
+                else if (CardSelect1.p2)
+                {
+                    float y = Player2Controller.moveSpeed * 0.3f;
+                    Player2Controller.moveSpeed += y;
+                    float c = player1.localScale.x;
+
+                    if (c < 0)
+                    {
+                        player2.localScale -= new Vector3(-1, 1, 1);
+                        CardSelect1.p2 = false;
+                    }
+                    else if (c > 0)
+                    {
+                        player2.localScale -= new Vector3(1, 1, 1);
+                        CardSelect1.p2 = false;
+                    }
+
+                    float b = player2.localScale.y;
+                    float v = b * 16 / 100;
+                    float groudIncrease1 = v;
+                    Player2Controller.groundCheckRadius = groudIncrease1;
+                    CardSelect1.p2 = false;
+                }
+            }
+            if (card3 == 3)
+            {
+                b3.image.sprite = Speed_Card;
+                if (CardSelect2.clicked3)
+                {
+                    float x = PlayerMovement.moveSpeed * 0.3f;
+                    PlayerMovement.moveSpeed += x;
+                    float a = player1.localScale.x;
+
+                    if (a < 0)
+                    {
+                        player1.localScale -= new Vector3(-1, 1, 1);
+                        CardSelect2.clicked3 = false;
+                    }
+                    else if (a > 0)
+                    {
+                        player1.localScale -= new Vector3(1, 1, 1);
+                        CardSelect2.clicked3 = false;
+                    }
+
+                    float i = player1.localScale.y;
+                    float j = i * 16 / 100;
+                    float groudIncrease = j;
+                    PlayerMovement.groundCheckRadius = groudIncrease;
+                    CardSelect2.clicked3 = false;
+                }
+
+                else if (CardSelect2.p2)
+                {
+                    float y = Player2Controller.moveSpeed * 0.3f;
+                    Player2Controller.moveSpeed += y;
+                    float c = player1.localScale.x;
+
+                    if (c < 0)
+                    {
+                        player2.localScale -= new Vector3(-1, 1, 1);
+                        CardSelect2.p2 = false;
+                    }
+                    else if (c > 0)
+                    {
+                        player2.localScale -= new Vector3(1, 1, 1);
+                        CardSelect2.p2 = false;
+                    }
+
+                    float b = player2.localScale.y;
+                    float v = b * 16 / 100;
+                    float groudIncrease1 = v;
+                    Player2Controller.groundCheckRadius = groudIncrease1;
+                    CardSelect2.p2 = false;
+                }
+            } //end of speed card
+
+            //start of glass cannon
+
+            if (card1 == 4)
+            {
+                b1.image.sprite = Glass_Cannon_Card;
+                if (CardSelect.clicked)
+                {
+                    int f = PlayerMovement.playerMaxHealth * 80 / 100;
+                    PlayerMovement.playerMaxHealth -= f;
+                    PlayerMovement.playerHealth = PlayerMovement.playerMaxHealth;
+                    int z = PlayerMovement.player1DamageAmount * 95 / 100;
+                    PlayerMovement.player1DamageAmount += z * 2;
+                    CardSelect.clicked = false;
+
+                }
+                if (CardSelect.p2)
+                {
+                    int f = Player2Controller.playerMaxHealth * 80 / 100;
+                    Player2Controller.playerMaxHealth -= f;
+                    Player2Controller.playerHealth = Player2Controller.playerMaxHealth;
+                    int z = Player2Controller.player2Damage * 95 / 100;
+                    Player2Controller.player2Damage += z * 2;
+                    CardSelect.p2 = false;
+                }
+            }
+            if (card2 == 4)
+            {
+                b2.image.sprite = Glass_Cannon_Card;
+                if (CardSelect1.clicked2)
+                {
+                    int f = PlayerMovement.playerMaxHealth * 80 / 100;
+                    PlayerMovement.playerMaxHealth -= f;
+                    PlayerMovement.playerHealth = PlayerMovement.playerMaxHealth;
+                    int z = PlayerMovement.player1DamageAmount * 95 / 100;
+                    PlayerMovement.player1DamageAmount += z * 2;
+                    CardSelect1.clicked2 = false;
+
+                }
+                if (CardSelect1.p2)
+                {
+                    int f = Player2Controller.playerMaxHealth * 80 / 100;
+                    Player2Controller.playerMaxHealth -= f;
+                    Player2Controller.playerHealth = Player2Controller.playerMaxHealth;
+                    int z = Player2Controller.player2Damage * 95 / 100;
+                    Player2Controller.player2Damage += z * 2;
+                    CardSelect1.p2 = false;
+                }
+            }
+            if (card3 == 4)
+            {
+                b3.image.sprite = Glass_Cannon_Card;
+                if (CardSelect2.clicked3)
+                {
+                    int f = PlayerMovement.playerMaxHealth * 80 / 100;
+                    PlayerMovement.playerMaxHealth -= f;
+                    PlayerMovement.playerHealth = PlayerMovement.playerMaxHealth;
+                    int z = PlayerMovement.player1DamageAmount * 95 / 100;
+                    PlayerMovement.player1DamageAmount += z * 2;
+                    CardSelect2.clicked3 = false;
+
+                }
+                if (CardSelect2.p2)
+                {
+                    int f = Player2Controller.playerMaxHealth * 80 / 100;
+                    Player2Controller.playerMaxHealth -= f;
+                    Player2Controller.playerHealth = Player2Controller.playerMaxHealth;
+                    int z = Player2Controller.player2Damage * 95 / 100;
+                    Player2Controller.player2Damage += z * 2;
+                    CardSelect2.p2 = false;
+                }
+            } //End of glass cannon
+            //Start of Homing
+            if (card1 == 5)
+            {
+                b3.image.sprite = Homing_Card;
+                if (CardSelect.clicked)
+                {
+                   int l = PlayerMovement.player1DamageAmount * 25 / 100;
+                    PlayerMovement.player1DamageAmount -= l;
+                    playerDamage.Homing = true;
+                    CardSelect.clicked = false;
+                }
+                if (CardSelect.p2)
+                {
+                    {
+                        int k = Player2Controller.player2Damage * 25 / 100;
+                        Player2Controller.player2Damage -= k;
+                        player2Damage.Homing = true;
+                        CardSelect.p2 = false;
+                    }
+
+                }
+
+            }
+            if (card2 == 5)
+            {
+                b3.image.sprite = Homing_Card;
+                if (CardSelect1.clicked2)
+                {
+                    int l = PlayerMovement.player1DamageAmount * 25 / 100;
+                    PlayerMovement.player1DamageAmount -= l;
+                    playerDamage.Homing = true;
+                    CardSelect1.clicked2 = false;
+                }
+                if (CardSelect.p2)
+                {
+                    {
+                        int k = Player2Controller.player2Damage * 25 / 100;
+                        Player2Controller.player2Damage -= k;
+                        player2Damage.Homing = true;
+                        CardSelect1.p2 = false;
+                    }
+
+                }
+
+            }
+            if (card3 == 5)
+            {
+                b3.image.sprite = Homing_Card;
+                if (CardSelect2.clicked3)
+                {
+                    int l = PlayerMovement.player1DamageAmount * 25 / 100;
+                    PlayerMovement.player1DamageAmount -= l;
+                    playerDamage.Homing = true;
+                    CardSelect2.clicked3 = false;
+                }
+                if (CardSelect2.p2)
+                {
+                    {
+                        int k = Player2Controller.player2Damage * 25 / 100;
+                        Player2Controller.player2Damage -= k;
+                        player2Damage.Homing = true;
+                        CardSelect2.p2 = false;
+                    }
+
+                }
+
+            } //End of Homing
         }
     }
+}
 
 

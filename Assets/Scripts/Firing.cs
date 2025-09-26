@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Firing : MonoBehaviour
 {
-    public int projectileSpeed = 1;
+    public int projectileSpeed = 10;
     public Transform firePoint;
     public GameObject poop;
     public int ammo = 3;

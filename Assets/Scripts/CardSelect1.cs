@@ -8,11 +8,9 @@ using UnityEngine.UI;
 
 public class CardSelect1 : MonoBehaviour
 {
-   
 
+    public bool random;
     public int randomNumber1;
-    
-    
     public bool clicked2;
     public bool p2;
     public Firing firing;
@@ -21,9 +19,8 @@ public class CardSelect1 : MonoBehaviour
 
     void Start()
     {
-       
-       
-        
+
+
 
     }
 
@@ -31,11 +28,12 @@ public class CardSelect1 : MonoBehaviour
     void Update()
     {
         Scene currentScene = SceneManager.GetActiveScene();
-        if (currentScene.name == "SampleScene")
+        if (currentScene.name != "Cards")
         {
             randomNumber1 = Random.Range(0, 20);
-            Debug.Log("Random number");
+
         }
+
     }
 
 
@@ -50,15 +48,16 @@ public class CardSelect1 : MonoBehaviour
             controller.enabled = true;
         }
 
-else if (collision.gameObject.CompareTag("Projectile2"))
-            {
-                
-                Debug.Log(randomNumber1);
+        else if (collision.gameObject.CompareTag("Projectile2"))
+        {
+
+            Debug.Log(randomNumber1);
+
             p2 = true;
             SceneManager.LoadScene(1);
             firing.enabled = true;
             controller.enabled = true;
         }
-        }
     }
+}
 

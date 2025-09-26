@@ -6,6 +6,8 @@ public class Player2Damage : MonoBehaviour
 {
     public PlayerMovement playerMovement;
     public Player2Controller player2Controller;
+    public Transform p1;
+    public bool Homing = false;
     void Start()
     {
         
@@ -14,7 +16,14 @@ public class Player2Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (Homing)
+        {
+            Vector2 directionToTarget = (p1.position - transform.position).normalized;
+            float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+            transform.Translate(Vector2.right * 5 * Time.deltaTime); ;
+        }
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

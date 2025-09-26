@@ -62,8 +62,14 @@ public class PointSystem : MonoBehaviour
 
             SceneManager.LoadScene("Cards");
             player1ChooseCard = false;
+            player2Controller.playerHealth = player2Controller.playerMaxHealth;
+            playerMovement.playerHealth = playerMovement.playerMaxHealth;
         }
-        if (player2ChooseCard) { SceneManager.LoadScene("Cards"); }
+        if (player2ChooseCard) { SceneManager.LoadScene("Cards");
+            player2ChooseCard = false;
+            player2Controller.playerHealth = player2Controller.playerMaxHealth;
+            playerMovement.playerHealth = playerMovement.playerMaxHealth;
+        }
         if(player1Max == 5)
         {
             Debug.Log("Player 1 Won");
