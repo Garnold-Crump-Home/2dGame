@@ -9,6 +9,8 @@ public class playerDamage : MonoBehaviour
     public PlayerMovement playerMovement;
     public Firing firing;
     public Player2Controller player2Controller;
+    public Transform player;
+    public LineRenderer lineRenderer;
     void Start()
     {
         
@@ -17,13 +19,27 @@ public class playerDamage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Homing) {
+        if (Homing)
+        {
             Vector2 directionToTarget = (p2.position - transform.position).normalized;
+
+            // Only draw the line if the object is close to the player
+            float distanceToPlayer = Vector2.Distance(transform.position, player.position); // player = your player transform
+            if (distanceToPlayer < 5f) // adjust 5f to your desired proximity
+            {
+                lineRenderer.SetPosition(0, transform.position);
+                lineRenderer.SetPosition(1, p2.position);
+            }
+
+            // Rotate towards target
             float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
             Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
-            transform.Translate(Vector2.right * 5 * Time.deltaTime);;
+
+            // Move forward
+            transform.Translate(Vector2.right * 5 * Time.deltaTime);
         }
+
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {

@@ -8,6 +8,7 @@ public class Player2Damage : MonoBehaviour
     public Player2Controller player2Controller;
     public Transform p1;
     public bool Homing = false;
+    public LineRenderer lineRenderer;
     void Start()
     {
         
@@ -18,11 +19,23 @@ public class Player2Damage : MonoBehaviour
     {
         if (Homing)
         {
-            Vector2 directionToTarget = (p1.position - transform.position).normalized;
-            float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
-            Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
-            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
-            transform.Translate(Vector2.right * 5 * Time.deltaTime); ;
+            if (Homing)
+            {
+                if (Homing)
+                {
+                    Vector2 directionToTarget = (p1.position - transform.position).normalized;
+
+                    // Update line renderer
+                    lineRenderer.SetPosition(0, transform.position);
+                    lineRenderer.SetPosition(1, p1.position);
+
+                    float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+                    Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
+                    transform.Translate(Vector2.right * 5 * Time.deltaTime);
+                }
+
+            }
         }
     }
     private void OnCollisionEnter2D(Collision2D collision)
