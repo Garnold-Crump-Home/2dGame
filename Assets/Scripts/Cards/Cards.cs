@@ -12,6 +12,8 @@ public class Cards : MonoBehaviour
     public playerDamage playerDamage;
     public Player2Damage player2Damage;
     public CardSelect CardSelect;
+    public Firing firing;
+    public FiringController firingController;
     public Button b1;
     public Button b2;
     public Button b3;
@@ -20,6 +22,7 @@ public class Cards : MonoBehaviour
     public Sprite Speed_Card;
     public Sprite Glass_Cannon_Card;
     public Sprite Homing_Card;
+    public Sprite Fastball_Card;
     public Sprite BlankCard;
     public PlayerMovement PlayerMovement;
     public Player2Controller Player2Controller;
@@ -61,15 +64,15 @@ public class Cards : MonoBehaviour
             int card1 = CardSelect.randomNumber;
             int card2 = CardSelect1.randomNumber1;
             int card3 = CardSelect2.randomNumber2;
-            if (card1 != 1 || card1 != 2 || card1 != 3)
+            if (card1 != 1 || card1 != 2 || card1 != 3 || card1 != 4 || card1 != 5 || card1 != 6)
             {
                 b1.image.sprite = BlankCard;
             }
-            if (card2 != 1 || card2 != 2 || card2 != 3)
+            if (card2 != 1 || card2 != 2 || card2 != 3 || card1 != 4 || card1 != 5 || card1 != 6)
             {
                 b2.image.sprite = BlankCard;
             }
-            if (card3 != 1 || card3 != 2 || card3 != 3)
+            if (card3 != 1 || card3 != 2 || card3 != 3 || card1 != 4 || card1 != 5 || card1 != 6)
             {
                 b3.image.sprite = BlankCard;
             }
@@ -564,7 +567,7 @@ public class Cards : MonoBehaviour
             //Start of Homing
             if (card1 == 5)
             {
-                b3.image.sprite = Homing_Card;
+                b1.image.sprite = Homing_Card;
                 if (CardSelect.clicked)
                 {
                    int l = PlayerMovement.player1DamageAmount * 25 / 100;
@@ -586,7 +589,7 @@ public class Cards : MonoBehaviour
             }
             if (card2 == 5)
             {
-                b3.image.sprite = Homing_Card;
+                b2.image.sprite = Homing_Card;
                 if (CardSelect1.clicked2)
                 {
                     int l = PlayerMovement.player1DamageAmount * 25 / 100;
@@ -628,6 +631,56 @@ public class Cards : MonoBehaviour
                 }
 
             } //End of Homing
+            //Start of Fastball card
+            if(card1  == 6)
+            {
+                b1.image.sprite = Fastball_Card;
+                if (CardSelect.clicked)
+                {
+                    int h = firing.projectileSpeed * 55 / 100;
+                    firing.projectileSpeed += h;
+                    CardSelect.clicked = false;
+                }
+                else if (CardSelect.p2)
+                {
+                    int h = firingController.projectileSpeed * 55 / 100;
+                    firingController.projectileSpeed += h;
+                    CardSelect.p2 = false;
+                }
+            }
+            if (card2 == 6)
+            {
+                b2.image.sprite = Fastball_Card;
+                if (CardSelect1.clicked2)
+                {
+                    int h = firing.projectileSpeed * 55 / 100;
+                    firing.projectileSpeed += h;
+                    CardSelect1.clicked2 = false;
+                }
+              else if (CardSelect1.p2)
+                {
+                    int h = firingController.projectileSpeed * 55 / 100;
+                    firingController.projectileSpeed += h;
+                    CardSelect1.p2 = false;
+                }
+            }
+            if (card2 == 6)
+            {
+                b3.image.sprite = Fastball_Card;
+                if (CardSelect2.clicked3)
+                {
+                    int h = firing.projectileSpeed * 55 / 100;
+                    firing.projectileSpeed += h;
+                    CardSelect2.clicked3 = false;
+                }
+                else if (CardSelect2.p2)
+                {
+                    int h = firingController.projectileSpeed * 55 / 100;
+                    firingController.projectileSpeed += h;
+                    CardSelect2.p2 = false;
+                }
+            }
+            //End of Fastball
         }
     }
 }

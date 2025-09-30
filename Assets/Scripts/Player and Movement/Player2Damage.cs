@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Player2Damage : MonoBehaviour
 {
+    public FiringController firingController;
     public PlayerMovement playerMovement;
     public Player2Controller player2Controller;
     public Transform p1;
@@ -17,24 +18,27 @@ public class Player2Damage : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        float distanceToPlayer = Vector2.Distance(transform.position, p1.position);
         if (Homing)
         {
-            if (Homing)
+            if (distanceToPlayer < 15f)
             {
-                if (Homing)
-                {
-                    Vector2 directionToTarget = (p1.position - transform.position).normalized;
+                Vector2 directionToTarget = (p1.position - transform.position).normalized;
 
-                    // Update line renderer
+
+                if (distanceToPlayer < 8f) // adjust 5f to your desired proximity
+                {
                     lineRenderer.SetPosition(0, transform.position);
                     lineRenderer.SetPosition(1, p1.position);
-
-                    float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
-                    Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
-                    transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, 5 * Time.deltaTime);
-                    transform.Translate(Vector2.right * 5 * Time.deltaTime);
                 }
 
+                // Rotate towards target
+                float angle = Mathf.Atan2(directionToTarget.y, directionToTarget.x) * Mathf.Rad2Deg;
+                Quaternion targetRotation = Quaternion.Euler(0, 0, angle);
+                transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, firingController.projectileSpeed * Time.deltaTime);
+
+                // Move forward
+                transform.Translate(Vector2.right * firingController.projectileSpeed * Time.deltaTime);
             }
         }
     }

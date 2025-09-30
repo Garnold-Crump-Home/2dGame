@@ -30,7 +30,7 @@ public class CardSelect2 : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name != "Cards")
         {
-            randomNumber2 = Random.Range(0, 20);
+            randomNumber2 = Random.Range(1, 20);
             
         }
         

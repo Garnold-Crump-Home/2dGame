@@ -6,21 +6,24 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
-public class CardSelect1 : MonoBehaviour
+public class CardSelect : MonoBehaviour
 {
+   
 
-    public bool random;
-    public int randomNumber1;
+  
+    public int randomNumber;
+    public bool clicked;
     public bool clicked2;
+    public bool clicked3;
     public bool p2;
     public Firing firing;
     public FiringController controller;
-
-
+    
+    
     void Start()
     {
 
-
+        randomNumber = Random.Range(0, 20);
 
     }
 
@@ -30,10 +33,8 @@ public class CardSelect1 : MonoBehaviour
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name != "Cards")
         {
-            randomNumber1 = Random.Range(0, 20);
-
+            randomNumber = Random.Range(1, 20);
         }
-
     }
 
 
@@ -41,23 +42,22 @@ public class CardSelect1 : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Projectile"))
         {
-            clicked2 = true;
-            Debug.Log(randomNumber1);
+            clicked = true;
+            Debug.Log(randomNumber);
             SceneManager.LoadScene(1);
             firing.enabled = true;
             controller.enabled = true;
         }
 
-        else if (collision.gameObject.CompareTag("Projectile2"))
-        {
-
-            Debug.Log(randomNumber1);
-
+else if (collision.gameObject.CompareTag("Projectile2"))
+            {
+                
+                Debug.Log(randomNumber);
             p2 = true;
             SceneManager.LoadScene(1);
             firing.enabled = true;
             controller.enabled = true;
         }
+        }
     }
-}
 

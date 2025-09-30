@@ -143,6 +143,10 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1007729743399729614, guid: 80db8714e8cbfbb428fb2722a9d8e1ce, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1007729743399729614, guid: 80db8714e8cbfbb428fb2722a9d8e1ce, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
       value: 0
       objectReference: {fileID: 0}
@@ -284,6 +288,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5374818683885886226, guid: 80db8714e8cbfbb428fb2722a9d8e1ce, type: 3}
       propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374818683885886226, guid: 80db8714e8cbfbb428fb2722a9d8e1ce, type: 3}
+      propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5720433654074761916, guid: 80db8714e8cbfbb428fb2722a9d8e1ce, type: 3}
@@ -1939,6 +1947,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 2063766249}
     - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
+      propertyPath: firing
+      value: 
+      objectReference: {fileID: 481583502}
+    - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
       propertyPath: player1
       value: 
       objectReference: {fileID: 2018991157}
@@ -1987,6 +1999,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1594509196}
     - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
+      propertyPath: Fastball_Card
+      value: 
+      objectReference: {fileID: 21300000, guid: 25d96d7c689d23b4f95dec29ae801921, type: 3}
+    - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
       propertyPath: player2Damage
       value: 
       objectReference: {fileID: 1947217422}
@@ -1994,6 +2010,10 @@ PrefabInstance:
       propertyPath: PlayerMovement
       value: 
       objectReference: {fileID: 2018991156}
+    - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
+      propertyPath: firingController
+      value: 
+      objectReference: {fileID: 525542263}
     - target: {fileID: 8467303873076022005, guid: 907db52bef01b034a833e7c68f72a607, type: 3}
       propertyPath: Glass_Cannon_Card
       value: 
@@ -2605,9 +2625,17 @@ PrefabInstance:
       value: Projectile2
       objectReference: {fileID: 0}
     - target: {fileID: 5921983850633954689, guid: 507e194881608eb4e963a0f4c3d4fc60, type: 3}
+      propertyPath: p1
+      value: 
+      objectReference: {fileID: 2018991157}
+    - target: {fileID: 5921983850633954689, guid: 507e194881608eb4e963a0f4c3d4fc60, type: 3}
       propertyPath: playerMovement
       value: 
       objectReference: {fileID: 2018991156}
+    - target: {fileID: 5921983850633954689, guid: 507e194881608eb4e963a0f4c3d4fc60, type: 3}
+      propertyPath: firingController
+      value: 
+      objectReference: {fileID: 525542263}
     - target: {fileID: 5921983850633954689, guid: 507e194881608eb4e963a0f4c3d4fc60, type: 3}
       propertyPath: player2Controller
       value: 
