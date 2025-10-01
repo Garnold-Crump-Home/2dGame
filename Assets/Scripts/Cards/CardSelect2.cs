@@ -11,6 +11,7 @@ public class CardSelect2 : MonoBehaviour
 
     public bool random;
     public int randomNumber2;
+    public int randomMapLoader;
     public bool clicked3;
     public bool p2;
     public Firing firing;
@@ -27,6 +28,7 @@ public class CardSelect2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        randomMapLoader = Random.Range(2, 10);
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name != "Cards")
         {
@@ -43,7 +45,7 @@ public class CardSelect2 : MonoBehaviour
         {
             clicked3 = true;
             Debug.Log(randomNumber2);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(randomMapLoader);
             firing.enabled = true;
             controller.enabled = true;
         }
@@ -54,7 +56,7 @@ else if (collision.gameObject.CompareTag("Projectile2"))
                 Debug.Log(randomNumber2);
             
             p2 = true;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(randomMapLoader);
             firing.enabled = true;
             controller.enabled = true;
         }

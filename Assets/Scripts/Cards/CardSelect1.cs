@@ -8,7 +8,7 @@ using UnityEngine.UI;
 
 public class CardSelect1 : MonoBehaviour
 {
-
+    public int randomMapLoader;
     public bool random;
     public int randomNumber1;
     public bool clicked2;
@@ -27,6 +27,7 @@ public class CardSelect1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        randomMapLoader = Random.Range(2, 10);
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name != "Cards")
         {
@@ -43,7 +44,7 @@ public class CardSelect1 : MonoBehaviour
         {
             clicked2 = true;
             Debug.Log(randomNumber1);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(randomMapLoader);
             firing.enabled = true;
             controller.enabled = true;
         }
@@ -54,7 +55,7 @@ public class CardSelect1 : MonoBehaviour
             Debug.Log(randomNumber1);
 
             p2 = true;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(randomMapLoader);
             firing.enabled = true;
             controller.enabled = true;
         }

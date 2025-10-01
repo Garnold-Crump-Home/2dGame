@@ -12,6 +12,7 @@ public class CardSelect : MonoBehaviour
 
   
     public int randomNumber;
+    public int randomMapLoader;
     public bool clicked;
     public bool clicked2;
     public bool clicked3;
@@ -30,10 +31,12 @@ public class CardSelect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+       
         Scene currentScene = SceneManager.GetActiveScene();
         if (currentScene.name != "Cards")
         {
             randomNumber = Random.Range(1, 20);
+            randomMapLoader = Random.Range(2, 5);
         }
     }
 
@@ -44,7 +47,7 @@ public class CardSelect : MonoBehaviour
         {
             clicked = true;
             Debug.Log(randomNumber);
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(randomMapLoader);
             firing.enabled = true;
             controller.enabled = true;
         }
@@ -54,7 +57,7 @@ else if (collision.gameObject.CompareTag("Projectile2"))
                 
                 Debug.Log(randomNumber);
             p2 = true;
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(randomMapLoader);
             firing.enabled = true;
             controller.enabled = true;
         }
