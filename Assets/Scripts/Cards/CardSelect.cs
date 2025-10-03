@@ -36,7 +36,7 @@ public class CardSelect : MonoBehaviour
         if (currentScene.name != "Cards")
         {
             randomNumber = Random.Range(1, 20);
-            randomMapLoader = Random.Range(2, 5);
+            randomMapLoader = Random.Range(2, 7);
         }
     }
 

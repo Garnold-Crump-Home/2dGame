@@ -681,8 +681,53 @@ public class Cards : MonoBehaviour
                 }
             }
             //End of Fastball
+            //Start of Ammobox
+            if (card1 == 7)
+            {
+                if (CardSelect.clicked)
+                {
+                    firing.ammo += 5;
+                    firing.maxAmmoCapsity += 5;
+                    CardSelect.clicked = false;
+                }
+                else if (CardSelect.p2)
+                {
+                    firingController.ammo += 5;
+                    firingController.maxAmmoCapsity += 5;
+                    CardSelect.p2 = false;
+                }
+            }
+            if (card2 == 7)
+            {
+                if (CardSelect1.clicked2)
+                {
+                    firing.ammo += 5;
+                    firing.maxAmmoCapsity += 5;
+                    CardSelect1.clicked2 = false;
+                }
+                else if (CardSelect1.p2)
+                {
+                    firingController.ammo += 5;
+                    firingController.maxAmmoCapsity += 5;
+                    CardSelect1.p2 = false;
+                }
+            }
+            if (card3 == 7)
+                if (CardSelect2.clicked3)
+                {
+                    firing.ammo += 5;
+                    firing.maxAmmoCapsity += 5;
+                    CardSelect2.clicked3 = false;
+                }
+                else if (CardSelect2.p2)
+                {
+                    firingController.ammo += 5;
+                    firingController.maxAmmoCapsity += 5;
+                    CardSelect2.p2 = false;
+                }
+            }
         }
     }
-}
+
 
 

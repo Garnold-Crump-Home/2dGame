@@ -32,7 +32,7 @@ public class CardSelect1 : MonoBehaviour
         if (currentScene.name != "Cards")
         {
             randomNumber1 = Random.Range(1, 20);
-
+            randomMapLoader = Random.Range(2, 7);
         }
 
     }
